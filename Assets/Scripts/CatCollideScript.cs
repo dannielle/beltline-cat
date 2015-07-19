@@ -8,15 +8,21 @@ public class CatCollideScript : MonoBehaviour {
 	public Sprite winSprite;
 
 	bool playerIsAdjacent;
+
+	GameObject player;
+	PlayerScript ps;
 	
 	void Start () {
 		sr = GetComponent<SpriteRenderer> ();
 		playerIsAdjacent = false;
+		player = GameObject.Find ("player");
+		ps = (PlayerScript)player.GetComponent (typeof(PlayerScript));
 	}
 	
 	void Update () {
-		if ( ( Input.GetKey (KeyCode.DownArrow) || Input.GetKey (KeyCode.Space) ) && playerIsAdjacent) {
+		if ( ps.isPlayerCrouching() && playerIsAdjacent) {
 			sr.sprite = winSprite;
+			GameScript.state = GameScript.State.Win;
 		}
 	
 	}

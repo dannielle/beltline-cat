@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\CatCollideScript.cs" />
+     <Compile Include="Assets\Scripts\GameScript.cs" />
      <Compile Include="Assets\Scripts\PlayerScript.cs" />
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>/Users/thoughtworker/Documents/playing/beltline cat/beltline cat/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>

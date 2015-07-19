@@ -9,10 +9,13 @@ public class PlayerScript : MonoBehaviour {
 	public Sprite creepingSprite;
 	public Sprite crouchingSprite;
 
+	Animator anim;
+
 	SpriteRenderer sr;
 	
 	void Start () {
 		sr = GetComponent<SpriteRenderer> ();
+		anim = GetComponent<Animator> ();
 	}
 
 	public enum State {
@@ -24,39 +27,35 @@ public class PlayerScript : MonoBehaviour {
 	public State state;
 	
 	void Update () {
-		float inputX = Input.GetAxis ("Horizontal");
-		movement = new Vector2 (inputX, 0);
-
-
-		if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey (KeyCode.LeftArrow )) {
-			state = State.Walk;
+		if (GameScript.state == GameScript.State.Win) {
+			movement = new Vector2(0,0);
+			return;
 		}
 
-		else if (Input.GetKey (KeyCode.Space) || Input.GetKey (KeyCode.DownArrow)) {
+		float inputX = Input.GetAxis ("Horizontal");
+		if (inputX >= 0) {
+			movement = new Vector2 (inputX, 0);
+		}
+
+		if ( Input.GetKey (KeyCode.DownArrow)) {
 			state = State.Crouch;
+			anim.SetBool("isCrouching", true);
 		}
 
 		else {
 			state = State.Creep;
+			anim.SetBool("isCrouching", false);
 		}
 
-		switch (state) {
-		case State.Walk:
-			sr.sprite = walkingSprite;
-			break;
-		case State.Creep:
-			sr.sprite = creepingSprite;
-			break;
-		case State.Crouch:
-			sr.sprite = crouchingSprite;
-			break;
-		default:
-			sr.sprite = creepingSprite;
-			break;
-		}
 	}
 
 	void FixedUpdate () {
 		rigidbody2D.velocity = movement;
+		anim.SetFloat ("speed", Mathf.Abs(movement.x));
 	}
+
+	public bool isPlayerCrouching () {
+		return state == State.Crouch;
+	}
+
 }
