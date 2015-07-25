@@ -1,19 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CatCollideScript : MonoBehaviour {
-
-	SpriteRenderer sr;
-
-	public Sprite winSprite;
-
+public class CatWinCollideScript : MonoBehaviour {
+	
 	bool playerIsAdjacent;
 
 	GameObject player;
 	PlayerScript ps;
 	
 	void Start () {
-		sr = GetComponent<SpriteRenderer> ();
 		playerIsAdjacent = false;
 		player = GameObject.Find ("player");
 		ps = (PlayerScript)player.GetComponent (typeof(PlayerScript));
@@ -21,16 +16,14 @@ public class CatCollideScript : MonoBehaviour {
 	
 	void Update () {
 		if ( ps.isPlayerCrouching() && playerIsAdjacent) {
-			sr.sprite = winSprite;
-			((GameScript) GameObject.Find("GameController").GetComponent(typeof(GameScript))).win();
+			((GameScript) GameObject.Find("GameManager").GetComponent(typeof(GameScript))).win();
 		}
 	
 	}
 
 	void OnTriggerEnter2D(Collider2D otherCollider) {
-		//is this a cat?
-		string cat = otherCollider.gameObject.name;
-		if (cat.Equals("player")) {
+		string other = otherCollider.gameObject.name;
+		if (other.Equals("player")) {
 			playerIsAdjacent = true;
 		}
 	}

@@ -12,13 +12,11 @@ public class GameScript : MonoBehaviour {
 	public static State state;
 	GameObject replayButton;
 
-	// Use this for initialization
 	void Start () {
 		state = State.Playing;
 		replayButton = GameObject.Find ("replay-button");
 	}
 	
-	// Update is called once per frame
 	void Update () {
 	}
 
@@ -32,6 +30,15 @@ public class GameScript : MonoBehaviour {
 	}
 
 	void winStateUI () {
+		replayButton.GetComponent<ReplayButtonScript> ().show ();
+	}
+
+	public void lose() {
+		state = State.Lose;
+		loseStateUI ();
+	}
+
+	void loseStateUI() {
 		replayButton.GetComponent<ReplayButtonScript> ().show ();
 	}
 

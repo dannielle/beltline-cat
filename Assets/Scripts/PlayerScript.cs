@@ -24,7 +24,7 @@ public class PlayerScript : MonoBehaviour {
 	public State state;
 	
 	void Update () {
-		if (GameScript.state == GameScript.State.Win) {
+		if ((GameScript.state == GameScript.State.Win) || (GameScript.state == GameScript.State.Lose)) {
 			movement = new Vector2(0,0);
 			return;
 		}
