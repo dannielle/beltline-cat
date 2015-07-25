@@ -14,7 +14,6 @@ public class ReplayButtonScript : MonoBehaviour {
 		if (anim.GetBool("isShowing") && (Input.GetKeyDown (KeyCode.Return) || Input.GetKey (KeyCode.KeypadEnter)) ) {
 			((GameScript) GameObject.Find("GameManager").GetComponent(typeof(GameScript))).restart();
 		}
-		print (anim.GetBool ("isShowing"));
 	}
 
 	public void hide () {

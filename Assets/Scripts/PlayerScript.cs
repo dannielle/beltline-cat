@@ -51,6 +51,14 @@ public class PlayerScript : MonoBehaviour {
 		anim.SetFloat ("speed", Mathf.Abs(movement.x));
 	}
 
+	public bool isPlayerVisible () {
+		return ((state == State.Walk) || (state == State.Creep));
+	}
+
+	public bool isPlayerMoving () {
+		return (state == State.Walk);
+	}
+
 	public bool isPlayerCrouching () {
 		return state == State.Crouch;
 	}
