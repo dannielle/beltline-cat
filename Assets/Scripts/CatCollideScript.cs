@@ -22,7 +22,7 @@ public class CatCollideScript : MonoBehaviour {
 	void Update () {
 		if ( ps.isPlayerCrouching() && playerIsAdjacent) {
 			sr.sprite = winSprite;
-			GameScript.state = GameScript.State.Win;
+			((GameScript) GameObject.Find("GameController").GetComponent(typeof(GameScript))).win();
 		}
 	
 	}

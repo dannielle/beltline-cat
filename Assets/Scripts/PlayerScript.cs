@@ -11,10 +11,7 @@ public class PlayerScript : MonoBehaviour {
 
 	Animator anim;
 
-	SpriteRenderer sr;
-	
 	void Start () {
-		sr = GetComponent<SpriteRenderer> ();
 		anim = GetComponent<Animator> ();
 	}
 
