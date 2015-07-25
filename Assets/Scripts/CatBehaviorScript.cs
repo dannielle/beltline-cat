@@ -17,6 +17,10 @@ public class CatBehaviorScript : MonoBehaviour {
 	}
 	
 	void Update () {
+		if (GameScript.state != GameScript.State.Playing) {
+			return;
+		}
+
 		PlayerScript ps = (PlayerScript)player.GetComponent (typeof(PlayerScript));
 
 		sense (player);
@@ -24,18 +28,16 @@ public class CatBehaviorScript : MonoBehaviour {
 		if (alertnessLevel > 300) {
 			runAway();
 		}
-		else if (alertnessLevel > 200) {
+		else if (alertnessLevel > 175) {
 			walkAway();
 		}
 		else if (alertnessLevel > 50 || ps.isPlayerCrouching()) {
 			standUp();
 		}
-		else {
+		if (alertnessLevel < 50) {
 			layDown();
 		}
 
-		print ("alertnesslevel: " + alertnessLevel);
-		print (anim.GetInteger ("state"));
 	}
 
 	void FixedUpdate () {
@@ -72,5 +74,14 @@ public class CatBehaviorScript : MonoBehaviour {
 	void layDown () {
 		movement = new Vector2 (0, 0);
 		anim.SetInteger ("state", 0);
+	}
+
+	void OnTriggerEnter2D(Collider2D otherCollider) {
+		print ("triger");
+		string other = otherCollider.gameObject.name;
+		print (other);
+		if (other.Equals("boundary")) {
+			runAway();
+		}
 	}
 }

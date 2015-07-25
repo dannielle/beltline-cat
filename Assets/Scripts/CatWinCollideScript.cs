@@ -16,9 +16,14 @@ public class CatWinCollideScript : MonoBehaviour {
 	
 	void Update () {
 		if ( ps.isPlayerCrouching() && playerIsAdjacent) {
+			love();
 			((GameScript) GameObject.Find("GameManager").GetComponent(typeof(GameScript))).win();
 		}
-	
+	}
+
+	void love() {
+		Animator anim = transform.parent.GetComponent<Animator> ();
+		anim.SetInteger ("state", 4);
 	}
 
 	void OnTriggerEnter2D(Collider2D otherCollider) {
