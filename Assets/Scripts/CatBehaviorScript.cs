@@ -77,9 +77,7 @@ public class CatBehaviorScript : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D otherCollider) {
-		print ("triger");
 		string other = otherCollider.gameObject.name;
-		print (other);
 		if (other.Equals("boundary")) {
 			runAway();
 		}

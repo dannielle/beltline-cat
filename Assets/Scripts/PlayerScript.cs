@@ -37,6 +37,7 @@ public class PlayerScript : MonoBehaviour {
 		if ( Input.GetKey (KeyCode.DownArrow)) {
 			state = State.Crouch;
 			anim.SetBool("isCrouching", true);
+			movement = new Vector2(0,0);
 		}
 
 		else {
