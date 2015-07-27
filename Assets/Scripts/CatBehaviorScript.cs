@@ -20,6 +20,10 @@ public class CatBehaviorScript : MonoBehaviour {
 		if (GameScript.state != GameScript.State.Playing) {
 			return;
 		}
+		if (anim.GetInteger ("state") == 4) {
+			movement = new Vector2(0,0);
+			return;
+		}
 
 		PlayerScript ps = (PlayerScript)player.GetComponent (typeof(PlayerScript));
 
@@ -65,7 +69,7 @@ public class CatBehaviorScript : MonoBehaviour {
 		anim.SetInteger ("state", 2);
 	}
 
-	void runAway () {
+	public void runAway () {
 		movement = new Vector2 (4, 0);
 		anim.SetInteger ("state", 3);
 		((GameScript) GameObject.Find("GameManager").GetComponent(typeof(GameScript))).lose();
