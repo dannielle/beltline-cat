@@ -17,11 +17,11 @@ public class CatBehaviorScript : MonoBehaviour {
 	}
 	
 	void Update () {
-		if (GameScript.state != GameScript.State.Playing) {
-			return;
-		}
 		if (anim.GetInteger ("state") == 4) {
 			movement = new Vector2(0,0);
+			return;
+		}
+		if (GameScript.state != GameScript.State.Playing) {
 			return;
 		}
 

@@ -16,7 +16,6 @@ public class CatWinCollideScript : MonoBehaviour {
 	
 	void Update () {
 		if ( ps.isPlayerCrouching() && playerIsAdjacent) {
-			print ("WIN");
 			love();
 			((GameScript) GameObject.Find("GameManager").GetComponent(typeof(GameScript))).win();
 		}
